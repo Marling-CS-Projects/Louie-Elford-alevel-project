@@ -2,7 +2,7 @@
 description: Computer Science H446-03
 ---
 
-# Some Generic Project
+# Some Maybe Not So Generic Top Down Space Strategy Game
 
 |                  |                  |
 | ---------------- | ---------------- |
