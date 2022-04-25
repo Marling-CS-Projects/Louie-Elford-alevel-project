@@ -51,7 +51,7 @@ public:
   string BW = "\u265D"; // black bishop
   string NW = "\u265E"; // black knight
   string PW = "\u265F"; // black pawn
-  string EE = "\u2800"; // empty space
+  string EE = "\u25A1"; // empty space
   string board[8][8] = {
     {RW, NW, BW, QW, KW, BW, NW, RW}, // standard chess board, playing as white
     {PW, PW, PW, PW, PW, PW, PW, PW}, 
@@ -75,6 +75,8 @@ public:
   bool BlackCanCastleRight;
   bool castleBleft;
   bool castleBright;
+  int kingWPos[2];
+  int kingBPos[2];
 
   // prints the current boardstate to console
   void printBoard() {
@@ -94,7 +96,6 @@ public:
     if (x1 == x2 && y1 == y2) return false;
 
     string piece = board[y1][x1];
-    
     if (piece == EE) return false;
     //white moves
     if (turn % 2 == 1) {
@@ -297,22 +298,26 @@ public:
         }
     
       if (piece == PW) {
-          if (x1 != x2) {
-            if (((x2 == x1 - 1 || x2 == x1 + 1) && colorcheck(x2, y2) == 2 && y2 == y1 + 1) || y2 == 5 && x2 == enPassant) return true;
-            return false;
-          }
-          if (colorcheck(x2, y2) != 0)
-            return false;
-          if (y1 == 1) {
-            if (y2 == 3 && colorcheck(x1, 2) == 0)
-              enPassant = x1;
-              delay = true;
-              return true;
-          }
-          if (y2 == y1 + 1)
+        if (x1 != x2) {
+          if (y2 == 5 && x2 == enPassant) {
+            board[4][x2] = EE;
             return true;
+          }
+          if (((x2 == x1 - 1 || x2 == x1 + 1) && colorcheck(x2, y2) == 2 && y2 == y1 + 1)) return true;
           return false;
         }
+        if (colorcheck(x2, y2) != 0)
+          return false;
+        if (y1 == 1) {
+          if (y2 == 3 && colorcheck(x1, 2) == 0)
+            enPassant = x1;
+            delay = true;
+            return true;
+        }
+        if (y2 == y1 + 1)
+          return true;
+        return false;
+      }
     
     }
     //black moves
@@ -508,22 +513,26 @@ public:
         }
     
       if (piece == PB) {
-          if (x1 != x2) {
-            if (((x2 == x1 - 1 || x2 == x1 + 1) && colorcheck(x2, y2) == 1 && y2 == y1 - 1) || y2 == 2 && x2 == enPassant) return true;
-            return false;
-          }
-          if (colorcheck(x2, y2) != 0)
-            return false;
-          if (y1 == 6) {
-            if (y2 == 4 && colorcheck(x1, 5) == 0)
-              enPassant = x1;
-              delay = true;
-              return true;
-          }
-          if (y2 == y1 - 1)
+        if (x1 != x2) {
+          if (y2 == 2 && x2 == enPassant) {
+            board[3][x2] = EE;
             return true;
+          }
+          if (((x2 == x1 - 1 || x2 == x1 + 1) && colorcheck(x2, y2) == 1 && y2 == y1 - 1)) return true;
           return false;
         }
+        if (colorcheck(x2, y2) != 0)
+          return false;
+        if (y1 == 6) {
+          if (y2 == 4 && colorcheck(x1, 5) == 0)
+            enPassant = x1;
+            delay = true;
+            return true;
+        }
+        if (y2 == y1 - 1)
+          return true;
+        return false;
+      }
         
     }
     return false;
@@ -670,6 +679,11 @@ void MoveHandler(int x1, int y1, int x2, int y2) {
   if (boardstate.legalMoveCheck(x1, y1, x2, y2) == true) {
     boardstate.Move(x1, y1, x2, y2);
     boardstate.turn = boardstate.turn + 1;
+    if (boardstate.delay == false) {
+      boardstate.enPassant = 10;
+      return;
+    }
+    boardstate.delay = false;
     return;
   }
   cout << "not a legal move";
@@ -688,6 +702,10 @@ void decode(string in) {
 }
 
 void chess() {
+  boardstate.kingWPos[0] = 4;
+  boardstate.kingWPos[1] = 0;
+  boardstate.kingBPos[0] = 4;
+  boardstate.kingBPos[1] = 7;
   boardstate.turn = 1;
   boardstate.WhiteCanCastleLeft = true;
   boardstate.WhiteCanCastleRight = true;
