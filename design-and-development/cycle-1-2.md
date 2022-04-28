@@ -4,26 +4,14 @@
 
 ### Objectives
 
-\[describe the cycle]
+the goal here is to clean up the code significantly and fix some glaring styling flaws.
 
-* [x] Do a thing
-* [x] Do another thing
+* [x] cut down the size of the check legal moves method significantly by calling other methods
+* [x] clean up the code that runs the game
+* [x] clean up the initialization of variables
+* [x] add comments
 
 ### Usability Features
-
-### Key Variables
-
-| Variable Name | Use                   |
-| ------------- | --------------------- |
-| foo           | does something useful |
-
-### Pseudocode
-
-```
-procedure do_something
-    
-end procedure
-```
 
 ## Development
 
@@ -35,13 +23,13 @@ Description of challenges
 
 ## Testing
 
-Evidence for testing
+the code needs to still work of course
 
 ### Tests
 
-| Test | Instructions  | What I expect     | What actually happens | Pass/Fail |
-| ---- | ------------- | ----------------- | --------------------- | --------- |
-| 1    | Run code      | Thing happens     | As expected           | Pass      |
-| 2    | Press buttons | Something happens | As expected           | Pass      |
+| Test | Instructions    | What I expect        | What actually happens | Pass/Fail |
+| ---- | --------------- | -------------------- | --------------------- | --------- |
+| 1    | Run code        | chess board displays |                       |           |
+| 2    | Do a legal move | move happens         |                       |           |
 
 ### Evidence
