@@ -1,4 +1,4 @@
-# 2.2.1 Cycle 1 - console based chess game side project - part 1
+# 2.2.1.1 console based chess game side project - part 1
 
 ## Design
 
@@ -768,4 +768,4 @@ Due to the sheer number of posible positions in chess I couldn't test each possi
 
 screenshot time:
 
-![](../.gitbook/assets/image.png)
+![](<../.gitbook/assets/image (1).png>)
