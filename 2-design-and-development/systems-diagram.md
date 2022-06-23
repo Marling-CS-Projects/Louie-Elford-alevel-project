@@ -12,12 +12,12 @@ Usability is an important aspect to my game as I want it to be accessible to all
 
 ### Effective
 
-Users can achieve the goal with completeness and accuracy. To do this, I will make it easy for the players to realise that they need to reach a goal in order to complete a level. I will make this goal clear to see so there is no confusion over where the players need to go.
+Users can achieve the goal with completeness and accuracy. To do this, I will make it easy for the players to realise what they need to do in order to win a game.
 
 #### Aims
 
-* Create a clear goal to reach to determine the end of a level
-* Create a clear goal for any multiplayer modes
+* Keep win conditions for games straightforward
+* give the player a prompt explaining how the win conditions work and an indicator of their progress towards it i.e either a list of the remaining ships each player has or an indicator of how many points each player has.
 
 ### Efficiency
 
@@ -30,13 +30,12 @@ The speed and accuracy to which a user can complete the goal. To do this, I will
 
 ### Engaging
 
-The solution is engaging for the user to use. To do this, I will create 5 levels and an online multiplayer mode to keep the players engaged and allow them to have fun while playing the game. Using vector style art will also make the game nicer to look at than blocks, so will draw more people in, keeping them engaged.
+The solution is engaging for the user to use. To do this, I will create 2d assets for the ships and ideally a background for the first map so that the player doesn't spend all of their time looking at polygons on empty space. Further development could include making the solution more engaging for the players by adding additional ships or maps to play with.
 
 #### Aims
 
-* Create a series of levels to work through
-* Create a multiplayer mode to play
-* Incorporate a style of game art the suits the game
+* Create 2d assets for the ships
+* Create a background for the first map
 
 ### Error Tolerant
 
@@ -53,8 +52,9 @@ The solution should be easy to use and not be over complicated. To do this, I wi
 
 #### Aims
 
-* Create a list of controls for the game
-* Create an in-level guide that helps players learn how to play the game
+* Create a list of controls for the game.
+* Create an in-game guide that helps players learn how to play the game like a help window.
+* allow access to all the basic functionality through simple controls i.e movement and attacking should be simple but any more advanced controls need to be optimized to be easy to use for the experienced player instead.
 
 ## Pseudocode for the Game
 
