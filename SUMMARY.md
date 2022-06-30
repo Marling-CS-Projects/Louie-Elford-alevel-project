@@ -15,9 +15,9 @@
 ## 2 Design and Development <a href="#design-and-development" id="design-and-development"></a>
 
 * [2.1 Design Frame](2-design-and-development/systems-diagram.md)
-* [2.2.1 Cycle 1](2-design-and-development/cycle-1.md)
-* [2.2.1.1 console based chess game side project - part 1](design-and-development/cycle-1-1.md)
-* [2.2.1.2 console based chess game side project - part 2](design-and-development/cycle-1-2.md)
+* [2.2.1 Cycle 1 making the game window](2-design-and-development/cycle-1.md)
+* [2.2.1.2 console based chess game side project - part 2](design-and-development/cycle-1-1.md)
+* [2.2.1.1 console based chess game side project - part 1](design-and-development/cycle-1-2.md)
 
 ## 3 Testing <a href="#testing" id="testing"></a>
 

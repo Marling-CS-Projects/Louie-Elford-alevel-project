@@ -1,23 +1,21 @@
-# 2.2.1 Cycle 1
+# 2.2.1 Cycle 1 making the game window
 
 ## Design
 
 ### Objectives
 
-[describe the cycle]
+\[describe the cycle]
 
-* [x] Do a thing
-* [x] Do another thing
+* [x] get a window to display
+* [x] render a triangle as a test
 
 ### Usability Features
 
-
 ### Key Variables
 
-| Variable Name            | Use                                                                                                          |
-| ------------------------ | ------------------------------------------------------------------------------------------------------------ |
-| foo                       | does something useful |
-
+| Variable Name | Use                   |
+| ------------- | --------------------- |
+| foo           | does something useful |
 
 ### Pseudocode
 
@@ -25,13 +23,11 @@
 procedure do_something
     
 end procedure
-
 ```
 
 ## Development
 
 ### Outcome
-
 
 ### Challenges
 
@@ -43,10 +39,9 @@ Evidence for testing
 
 ### Tests
 
-| Test | Instructions                         | What I expect                                      | What actually happens | Pass/Fail |
-| ---- | ------------------------------------ | -------------------------------------------------- | --------------------- | --------- |
-| 1    | Run code                             | Thing happens        | As expected           | Pass      |
+| Test | Instructions  | What I expect     | What actually happens | Pass/Fail |
+| ---- | ------------- | ----------------- | --------------------- | --------- |
+| 1    | Run code      | Thing happens     | As expected           | Pass      |
 | 2    | Press buttons | Something happens | As expected           | Pass      |
 
 ### Evidence
-
