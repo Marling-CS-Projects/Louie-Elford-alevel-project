@@ -1,4 +1,4 @@
-# 2.2.1 Cycle 1 making the game window
+# 2.2.2 Cycle 2 making the first ship
 
 ## Design
 
