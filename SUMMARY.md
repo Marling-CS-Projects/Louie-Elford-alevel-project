@@ -15,10 +15,10 @@
 ## 2 Design and Development <a href="#design-and-development" id="design-and-development"></a>
 
 * [2.1 Design Frame](2-design-and-development/systems-diagram.md)
-* [2.2.1.1 console based chess game side project - part 1](design-and-development/cycle-1.md)
-* [2.2.1.2 console based chess game side project - part 2](<design-and-development/cycle-1-2 (1).md>)
-* [2.2.1 Cycle 1 making the game window](design-and-development/cycle-1-2.md)
-* [2.2.2 Cycle 2 making the first ship](design-and-development/cycle-1-3.md)
+* [console based chess game side project](design-and-development/cycle-1.md)
+* [2.3 Revised Design Frame](design-and-development/systems-diagram-1.md)
+* [2.3.1 Cycle 1 construct the project using Phaser and visual studio](design-and-development/cycle-1-1.md)
+* [2.3.1 Cycle 2 making the first ship](design-and-development/cycle-1-2.md)
 * [Untitled](design-and-development/untitled.md)
 
 ## 3 Testing <a href="#testing" id="testing"></a>

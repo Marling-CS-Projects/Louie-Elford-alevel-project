@@ -1,4 +1,4 @@
-# 2.2.1 Cycle 1 making the game window
+# 2.3.1 Cycle 2 making the first ship
 
 ## Design
 
@@ -6,10 +6,16 @@
 
 \[describe the cycle]
 
-* [x] get a window to display
+*
 * [x] render a triangle as a test
 
 ### Usability Features
+
+### Key Variables
+
+| Variable Name | Use                   |
+| ------------- | --------------------- |
+| foo           | does something useful |
 
 ### Pseudocode
 

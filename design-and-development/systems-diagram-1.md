@@ -1,10 +1,16 @@
-# 2.1 Design Frame
+# 2.3 Revised Design Frame
+
+## Reasons for Revision
+
+I've decided to move to a much simpler approach by using a template for Phaser 3, a game framework which will make creating the game much simpler. using C++ and making the game with OpenGL and SLD(or equivalent) libraries would be far too time consuming.
+
+The switch to phaser will lead to me focusing more on the game components as all the groundwork is in place with the library.
 
 ## Systems Diagram
 
-![](<../.gitbook/assets/Untitled (1).jpg>)
+<figure><img src="../.gitbook/assets/Louie Elford project ideation.jpg" alt=""><figcaption><p>systems diagram</p></figcaption></figure>
 
-This diagram shows the different parts of the game that I will focus on creating. I have split each section into smaller sub-sections. Throughout the development stage, I will pick one or two of these sections to focus on at a time to gradually build up and piece together the game. I have broken the project down this way as it roughly corresponds to the success criteria. Elements with a question mark in brackets next to them "(?)" are further development only.
+This diagram is a simple representation of the baseline requirements of the game. I will work to develop the loading and main menu scenes initially and will likely update the logo and menu graphics, Game.ts and config.ts files as needed.
 
 ## Usability Features
 
@@ -12,7 +18,7 @@ Usability is an important aspect to my game as I want it to be accessible to all
 
 ### Effective
 
-Users can achieve the goal with completeness and accuracy. To do this, I will make it easy for the players to realise what they need to do in order to win a game.
+Users can achieve the goal with completeness and accuracy. To do this, I will make it easy for the players to understand what they need to do in order to win a game.
 
 #### Aims
 
@@ -26,16 +32,15 @@ The speed and accuracy to which a user can complete the goal. To do this, I will
 #### Aims
 
 * Create a menu system that is quick and easy to navigate through
-* Create a controls system that isn't too complicated but allows the player to do multiple actions
+* Create a controls system that isn't too complicated but allows the player to queue actions or control multiple ships
 
 ### Engaging
 
-The solution is engaging for the user to use. To do this, I will create 2d assets for the ships and ideally a background for the first map so that the player doesn't spend all of their time looking at polygons on empty space. Further development could include making the solution more engaging for the players by adding additional ships or maps to play with.
+The solution is engaging for the user to use. To do this, I will create 2d assets for the ships.
 
 #### Aims
 
 * Create 2d assets for the ships
-* Create a background for the first map
 
 ### Error Tolerant
 
@@ -53,8 +58,7 @@ The solution should be easy to use and not be over complicated. To do this, I wi
 #### Aims
 
 * Create a list of controls for the game.
-* Create an in-game guide that helps players learn how to play the game like a help window.
-* allow access to all the basic functionality through simple controls i.e movement and attacking should be simple but any more advanced controls need to be optimized to be easy to use for the experienced player instead.
+* allow access to all the basic functionality through simple controls
 
 ## Pseudocode for the Game
 
@@ -94,7 +98,7 @@ class Level extends Phaser Scene
     end procedure
     
     procedure update
-        handle key presses
+        interpret player commands
         move ships and projectiles
         detect projectile hits
         update animations

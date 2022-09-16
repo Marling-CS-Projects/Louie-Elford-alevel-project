@@ -1,4 +1,8 @@
-# 2.2.1.1 console based chess game side project - part 1
+---
+description: quick side project to practice C++ and evaluate the viability of the project
+---
+
+# console based chess game side project
 
 ## Design
 
@@ -768,4 +772,4 @@ Due to the sheer number of posible positions in chess I couldn't test each possi
 
 screenshot time:
 
-![](<../.gitbook/assets/image (1).png>)
+![](<../.gitbook/assets/image (1) (1).png>)
