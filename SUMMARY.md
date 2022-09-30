@@ -17,9 +17,9 @@
 * [2.1 Design Frame](2-design-and-development/systems-diagram.md)
 * [console based chess game side project](design-and-development/cycle-1.md)
 * [2.3 Revised Design Frame](design-and-development/systems-diagram-1.md)
-* [2.3.1 Cycle 1 construct the project using Phaser and visual studio](design-and-development/cycle-1-1.md)
-* [2.3.1 Cycle 2 making the first ship](design-and-development/cycle-1-2.md)
-* [Untitled](design-and-development/untitled.md)
+* [2.3.1 Cycle 1 construct the project using Phaser and visual studio](design-and-development/cycle-1-2.md)
+* [2.3.2 Cycle 2 making the main menu](design-and-development/cycle-1-3.md)
+* [2.3.3 Cycle 3 making a ship class](<design-and-development/cycle-1-3 (1).md>)
 
 ## 3 Testing <a href="#testing" id="testing"></a>
 
