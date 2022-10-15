@@ -66,7 +66,7 @@ I decided to switch from 800 by 600 to full HD resolution whilst coding, fortuna
 
 <figure><img src="../.gitbook/assets/image (3).png" alt=""><figcaption><p>old resolution during early development of the menu</p></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/image (4).png" alt=""><figcaption><p>new resolution with completed menu (placeholder graphics)</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (4) (1).png" alt=""><figcaption><p>new resolution with completed menu (placeholder graphics)</p></figcaption></figure>
 
 the menu works well and it's possible to move onto the game now.
 

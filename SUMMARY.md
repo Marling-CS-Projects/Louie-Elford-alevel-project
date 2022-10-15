@@ -20,6 +20,9 @@
 * [2.3.1 Cycle 1 construct the project using Phaser and visual studio](design-and-development/cycle-1-2.md)
 * [2.3.2 Cycle 2 making the main menu](design-and-development/cycle-1-3.md)
 * [2.3.3 Cycle 3 making a ship class](<design-and-development/cycle-1-3 (1).md>)
+* [Cycle 3.5 ensuring ship objects are creating within the scene scope](design-and-development/cycle-3.5-ensuring-ship-objects-are-creating-within-the-scene-scope.md)
+* [2.3.4 Cycle 4 controlling ship movement](design-and-development/cycle-1-4.md)
+* [State of code after cycle 4](design-and-development/state-of-code-after-cycle-4.md)
 
 ## 3 Testing <a href="#testing" id="testing"></a>
 

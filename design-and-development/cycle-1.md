@@ -772,4 +772,4 @@ Due to the sheer number of posible positions in chess I couldn't test each possi
 
 screenshot time:
 
-![](<../.gitbook/assets/image (1).png>)
+![](<../.gitbook/assets/image (1) (1).png>)
