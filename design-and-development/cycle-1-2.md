@@ -101,4 +101,4 @@ I did some simple tests, the loading screen displayed correctly when launched, t
 
 <figure><img src="../.gitbook/assets/image (5) (1).png" alt=""><figcaption><p>loading screen in progress on local web server</p></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption><p>blank background and console logs showing successful start of the menu scene</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1).png" alt=""><figcaption><p>blank background and console logs showing successful start of the menu scene</p></figcaption></figure>
