@@ -21,11 +21,13 @@
 * [2.3.2 Cycle 2 making the main menu](design-and-development/cycle-1-3.md)
 * [2.3.3 Cycle 3 making a ship class](<design-and-development/cycle-1-3 (1).md>)
 * [2.3.4 Cycle 4 integrating ships objects into the Phaser](design-and-development/2.3.4-cycle-4-integrating-ships-objects-into-the-phaser.md)
-* [2.3.5 Cycle 5 Movement queue and managing ship movement](design-and-development/cycle-1-4.md)
-* [2.3.6 Cycle 6 Complex move orders](design-and-development/cycle-1-5.md)
-* [2.3.6.5 Cycle 6.5 Rendering Complex move orders.](design-and-development/cycle-1-6.md)
-* [2.3.7 Cycle 7 Navigating using Complex Move Orders](design-and-development/cycle-1-7.md)
-* [State of code after cycle 4](design-and-development/state-of-code-after-cycle-4.md)
+* [2.3.something Cycle something acceleration and parameters](design-and-development/cycle-1-4.md)
+* [2.3.5 Cycle 5 Movement queue and managing ship movement](design-and-development/cycle-1-5.md)
+* [2.3.6 Cycle 6 Complex move orders](design-and-development/cycle-1-6.md)
+* [2.3.6.5 Cycle 6.5 Rendering Complex move orders.](design-and-development/cycle-1-7.md)
+* [2.3.7 Cycle 7 Navigating using Complex Move Orders](design-and-development/cycle-1-8.md)
+* [2.3.8 Cycle 8 transverse move orders](design-and-development/cycle-1-9.md)
+* [2.3.8.5 State of code after cycle 8](design-and-development/2.3.8.5-state-of-code-after-cycle-8.md)
 
 ## 3 Testing <a href="#testing" id="testing"></a>
 

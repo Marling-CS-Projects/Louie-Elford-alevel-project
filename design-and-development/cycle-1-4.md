@@ -1,56 +1,52 @@
 ---
-description: >-
-  need a way to manage movement of the ships that will allow for an RTS control
-  scheme
+description: creating parameters and an acceleration function
 ---
 
-# 2.3.5 Cycle 5 Movement queue and managing ship movement
+# 2.3.something Cycle something acceleration and parameters
 
 ## Design
 
-Each ship object will contain a queue with coordinates, when the player uses a move command coordinates for the waypoint will be added to the queue. The ships will move toward the next coordinate on the queue until they reach the coordinate then remove it from the queue and repeat.
+I want the ship to accelerate in a non linear fascion with decreasing rate of acceleration (Jerk). To do this I've decided to use a function to return velocity for a given time input. Time is then increased for time spent accelerating and decreased for time spent decelerating.
+
+The function needs to include several parameters that allow me to model acceleration so that each potential ship can have different properties.
 
 ### Objectives
 
-The ship moves from one point to another.
+The ship accelerates according to parameters set in its JSON file.
 
-* [x] create a queue class
-* [x] add some test move waypoints
-* [x] move the ship towards the waypoint
-* [x] when the ship reaches a waypoint it stops navigating to it and instead navigates to the next waypoint
+* [x] create a velocity time function
+* [x] use parameters from the JSON file
+* [x] the ship accelerates in a decreasing rate
 
 ### Usability Features
 
-* this is purely computational and won't see any direct interaction with the user as such I don't need to worry about Usability Features. The user interaction will later stem from the use of movement commands to add waypoints.
+* acceleration is visible and isn't locked to taking an excessive amount of time
 
 ### Key Variables
 
-| Variable Name | Use                                                                                                                     |
-| ------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| WayPointQueue | Queue of waypoints for the ship to navigate to implemented with a custom queue class                                    |
-| queue (class) | a queue class that will enque and deque variables/objects correctly and allow for peeking the first in the queue order. |
+| Variable Name | Use                                                                                                                   |
+| ------------- | --------------------------------------------------------------------------------------------------------------------- |
+| maxV          | maximum velocity for the ship                                                                                         |
+| accelCoef     | a coeficient which determines the rate of acceleration                                                                |
+| limit         | variable that stores the limit of acceleration time, this is the time at which the ship reaches its maximum velocity. |
 
 ### Pseudocode
 
 ```
-class queue {
-    array = [];
-    enque() {
-        //code here
-    }
-    dequeue() {
-        //code here
-    }
-    peek() {
-        //code here
-    }
-}
-
 ship {
-    WayPointQueue = new queue();
+    
+    updateAccelTime() {
+        //updates the time spent accelerating
+    }
+    
+    accelerate() {
+        //acceleration function
+    }
     
     move() {
-        //code to navigate to waypoint
+        //call updateAccelTime
+        //call accelerate
+        //move through velocity*time
     }
     
     update() {
@@ -61,29 +57,79 @@ ship {
 
 ## Development
 
-I implemented a queue class at the top of the ship.ts file and then proceeded to add code to navigate to the next waypoint in the queue
+as the psuedocode indicates, first we call UpdateAccelTime to update the time spent accelerating (here it's fixed to true meaning that the ship is accelerating) then we call accelerate to get the velocity and multiply that by the change in time (to get change in displacement) and finally add that to the x position of the ship.
+
+{% code lineNumbers="true" %}
+```typescript
+export default class Ship extends Phaser.GameObjects.Sprite {
+
+	public velocity = 0;
+	public accelTime = 0;
+	public limit = 0; //(Math.E-1)/this.accelcoef
+	public maxV = 0;
+	public accelCoef = 0;
+	public moveOrderQueue = new Queue();
+	public TurnR = 0;
+	public TempDisplacement: number = 0;
+
+	constructor(scene: Phaser.Scene, x: number, y: number, texture: string, frame?: string | number ) {
+		super(scene, x, y, texture, frame);
+		return Object.assign(this, scene.cache.json.get('TestShipJSON'));
+	}
+
+	Accelerate(): number{
+		return this.velocity = this.maxV*(Math.E*Math.log1p(this.accelCoef*this.accelTime)-this.accelCoef*this.accelTime);
+	}	// velocity = v*(e*Math.log1p(a*x)-a*x)
+
+	UpdateAccelTime(acc: boolean, delta: number): void {
+		
+		let incTime: number;
+
+		if (acc) {
+			incTime = this.accelTime + delta/1000;
+		} 
+		else {
+			incTime = this.accelTime - delta/1000;
+		}
+
+		if (incTime < this.limit && incTime > 0) {
+			this.accelTime = incTime;
+		}
+	}
+
+	Move(delta: number): void {
+		this.UpdateAccelTime(true,delta);
+		this.x = this.x + this.Accelerate() * (delta/1000);
+	}
+	
+	update(time, delta) {
+		this.Move(delta);
+	}
+}
+
+```
+{% endcode %}
 
 ### Outcome
 
-The ship can now be fed orders from a queue allowing for RTS style queueing of movement orders.
+acceleration!
 
-However there are now issues to do with controlling deceleration and the ship isn't able to turn yet.
+{% file src="../.gitbook/assets/2022-12-11 18-03-13.mp4" %}
 
 ### Challenges
 
-not particularly challenging, the queue worked surprisingly well.
+decreasing acceleration is relatively complex to model in a way that's natural and this method of using logarithms runs the danger of being computationally expensive but I'm ignoring the issue right now because it's unlikely to effect performance.
 
 ## Testing
 
+I've coded this to be straightforward to test by simply changing the x displacement. What we should see is that the ship accelerates rapidly at first then at a decreasing rate and soon reaches maximum velocity all whilst moving only in the x direction.
+
 ### Tests
 
-| Test | Instructions     | What I expect                                                                 | What actually happens                             | Pass/Fail |
-| ---- | ---------------- | ----------------------------------------------------------------------------- | ------------------------------------------------- | --------- |
-| 1    | Run code         | Game doesn't freeze/crash or throw errors before reaching the end of content. | The game runs without throwing errors or freezing | Pass      |
-| 2    | Press Start Game | Test ship appears and moves between hard coded waypoints.                     | As expected                                       | Pass      |
+| Test | Instructions     | What I expect                                                                            | What actually happens                             | Pass/Fail |
+| ---- | ---------------- | ---------------------------------------------------------------------------------------- | ------------------------------------------------- | --------- |
+| 1    | Run code         | Game doesn't freeze/crash or throw errors before reaching the end of content.            | The game runs without throwing errors or freezing | Pass      |
+| 2    | Press Start Game | Test ship appears and moves to the right with decreasing acceleration until hitting maxV | As expected                                       | Pass      |
 
 ### Evidence
 
-{% file src="../.gitbook/assets/2022-10-05 15-34-14.mp4" %}
-
-The ship can be seen moving from waypoitn to waypoint
