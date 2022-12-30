@@ -56,7 +56,7 @@ ship {
 
 I will define a complex move order as an arc lenght of one circle of radius turning radius, the tangent between this circle and a second circle with the same radius and finally an arc length along the second circle.
 
-<figure><img src="../.gitbook/assets/image (5).png" alt=""><figcaption><p>simple example representation of a new move order</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (5) (2).png" alt=""><figcaption><p>simple example representation of a new move order</p></figcaption></figure>
 
 I quickly identified that this single arrangement would not be most efficient for every case. In an effort to find a computational way of determining how to generate/define a complex move order I drew up a list of expected scenarios and gave them temporary names: (a little o next to the vector denotes origin and a little e denotes exit. The Move path always finds a path from the origin to the exit respecting the angle of each)
 
@@ -65,7 +65,7 @@ I quickly identified that this single arrangement would not be most efficient fo
 after some time spent theorising I realised that the 4 cases were created by the 2^2 (4) different combinations of positions for the turning circles.\
 <img src="../.gitbook/assets/image (10) (1).png" alt="" data-size="original"> \
 These positions are in turn decided by the angle between the vector tangent to the circle and the line between the two vectors.\
-![](<../.gitbook/assets/image (6).png>)\
+![](<../.gitbook/assets/image (6) (1).png>)\
 demonstration using the origin vector, this works the same for the exit vector too.
 
 If the turning circles are on the same side of the vectors the tangent will be direct, if they're on opposite sides of the vectors the tangent will be transverse.\
@@ -205,6 +205,6 @@ I found an issue when the turn required for a direct turn is over 180 degrees du
 
 <figure><img src="../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>

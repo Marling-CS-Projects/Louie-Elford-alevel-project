@@ -2,7 +2,7 @@
 
 ## Design
 
-The aim of this Cycle is to ensure that every possible movement works for the ship. Currently the case where the tangent between the two turning circles is transverse that I mentioned before breaks the movement. This could potentially be fixed by forcing a larger direct turn but transverse turns are a more elegant solution.
+The aim of this Cycle is to ensure that every possible movement works for the ship. Currently the case where the tangent between the two turning circles is transverse that I mentioned before breaks the movement. This should be fixed by rotating the translation that I'm generating to represent the tangent in this case so that it reflects the actual transverse tangent instead of a completly incorrect direct tangent
 
 ### Objectives
 
@@ -11,127 +11,51 @@ The aim of this Cycle is to ensure that every possible movement works for the sh
 
 ### Usability Features
 
+![no](<../.gitbook/assets/image (12).png>)
+
 ### Key Variables
 
-| Variable Name | Use                                                       |
-| ------------- | --------------------------------------------------------- |
-| TempDistance  | the temporary distance on the current move order          |
-| commands      | stores the output of the MovePath getPointDistance method |
+| Variable Name | Use                                                                                                                                   |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| RotateAngle   | the angle to rotate the striaght transformation section by, this needs to be done to change the tangent from a direct to a transverse |
 
 ### Pseudocode
 
 ```
 MovePath {
-    getPointDistance() {
-        //returns two Vector2s in an array
-        //the first indicates the precise location of a point a certain distance
-        //on the move path
-        //the second is a unit vector in the direction tangent to the move
-        //path at this distance on the move path
+    constructor() {
+        if (//turn one is right) {
+            if (turn two is right) {
+                //modifications for right direct turn
+            } 
+            else {
+                //modifications for transverse turn with first turn right
+            } 
+        }
+        else {
+            if (turn two is right) {
+                //modifications for transverse turn with first turn left
+            }
+            else {
+                //modifications for direct right turn
+            }
+        }
     }
 
-}
-
-
-ship {
-    
-    move() {
-        //update acceleration time then velocity
-        //increase TempDistance by velocity*time
-        //call getPointDistance using TempDistance and store the resulting array in a variable
-        //use index 0 of stored array to set position
-        //call .angle method on index 1 of the array and use result to set the rotation
-    }
-    
-    update() {
-        move()
-    }
 }
 ```
 
 ## Development
 
+<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
+this shows the basis for the mathematical and theory side. I'm going to use basic trig to find the angle of the vector and pythagoras to find the magnitude, then I'll construct a vector using that magnitude and angle. I'm going to use Phaser's vector2 methods for this to save me some work.
 
 ### Outcome
 
-{% tabs %}
-{% tab title="GameRun.ts" %}
-```
-import 'phaser';
-import './Ship';
+it is done
 
-const config = {
-  key: "GameRun",
-  // active: false,
-  // visible: true,
-  // pack: false,
-  // cameras: null,
-  // map: {},
-  // physics: {},
-  // loader: {},
-  // plugins: false,
-  // input: {}
-};
-
-
-let graphics: Phaser.GameObjects.Graphics;
-
-export default class GameRun extends Phaser.Scene {
-
-	public shiplist = [];
-
-	create() {
-
-		console.log('gameRun active');
-		let shipName = "testship";
-		this.shiplist.push(this.add[shipName](500, 500, "TestShipSpritesheet"));
-		console.log(this.shiplist[0]);
-		
-		const point1 = new Phaser.Math.Vector2(200,200);
-		const ang1 = -50;
-		const point2 = new Phaser.Math.Vector2(800,600);
-		const ang2 = 90;
-		
-		this.shiplist[0].NewPath(point1,ang1,point2,ang2);
-
-		const path4Point1 = new Phaser.Math.Vector2(800, 600);
-		const path4Ang1 = 90;
-		const path4Point2 = new Phaser.Math.Vector2(1300, 75);
-		const path4Ang2 = -140;
-
-		this.shiplist[0].NewPath(path4Point1, path4Ang1, path4Point2, path4Ang2);
-
-		const path5Point1 = new Phaser.Math.Vector2(1300,75);
-		const path5Ang1 = -140;
-		const path5Point2 = new Phaser.Math.Vector2(1000,800);
-		const path5Ang2 = 30;
-
-		this.shiplist[0].NewPath(path5Point1, path5Ang1, path5Point2, path5Ang2);
-
-		graphics = this.add.graphics();
-		console.log(this);
-	}
-	
-	update() {
-		graphics.clear();
-
-		graphics.lineStyle(2, 0xffffff, 1);
-
-		if (!this.shiplist[0].moveOrderQueue.isEmpty) {
-			const lineToDraw = this.shiplist[0].moveOrderQueue.peek();
-			lineToDraw.draw(graphics);
-		}
-
-		graphics.fillStyle(0xff0000, 1);
-	}
-}
-```
-{% endtab %}
-
-{% tab title="ship.ts" %}
-```
-import 'phaser';
+<pre class="language-typescript" data-line-numbers><code class="lang-typescript">import 'phaser';
 
 class Queue {
 	
@@ -171,10 +95,10 @@ class MovePath extends Phaser.Curves.Path {
 		const travelAngle: number = Phaser.Math.Angle.BetweenPoints(point1, point2) * (180/Math.PI);
 		//find turn directions
 
-		//if ang1-travelAngle < 0 clockwise
-		let turn1Clockwise: boolean = (ang1 - travelAngle < 0 && ang1 - travelAngle > -180);
-		//if travelAngle-ang2 < 0 clockwise
-		const turn2Clockwise: boolean = (travelAngle - ang2 < 0 && travelAngle - ang2 > -180);
+		//if ang1-travelAngle &#x3C; 0 clockwise
+		let turn1Clockwise: boolean = (ang1 - travelAngle &#x3C; 0 &#x26;&#x26; ang1 - travelAngle > -180);
+		//if travelAngle-ang2 &#x3C; 0 clockwise
+		const turn2Clockwise: boolean = (travelAngle - ang2 &#x3C; 0 &#x26;&#x26; travelAngle - ang2 > -180);
 
 		//assigns the first turning circle center to point1 and the transformation from original point1 to the first turning circle center in CenterTranslation1
 		const CenterTranslation1 = MovePath.FindTurningCircle(point1,ang1,TurnR,turn1Clockwise);	
@@ -184,23 +108,48 @@ class MovePath extends Phaser.Curves.Path {
 		const CenterTranslation2 = MovePath.FindTurningCircle(point2,ang2,TurnR,turn2Clockwise);
 		
 		//find the translation between the two circle centers (point1 and point2)
+		
+
 		const interCenterTranslation = point2.clone();
 		interCenterTranslation.subtract(point1);
-
 		
-		const TransitionRadiusAngle = interCenterTranslation.angle() * (180 / Math.PI) - 90;
 
-		let rotation = 0
+		let rotation1 = 0
+		let rotation2 = 0
 
-		if (!turn1Clockwise && !turn2Clockwise) {
-			rotation = 180;
+		if (turn1Clockwise) {
+			if (!turn2Clockwise) {
+<strong>				//transverse with a right first turn
+</strong><strong>				rotation2 = 180;
+</strong><strong>				const length = interCenterTranslation.length();
+</strong><strong>				const angle = Math.atan((2*TurnR)/length);
+</strong><strong>
+</strong><strong>				interCenterTranslation.rotate(angle);
+</strong><strong>				interCenterTranslation.scale(Math.cos(angle));
+</strong>			}
+		}
+		else {
+			if (turn2Clockwise) {
+<strong>				//transverse with a left first turn
+</strong><strong>				rotation1 = 180;
+</strong><strong>				const length = interCenterTranslation.length();
+</strong><strong>				const angle = Math.atan((2*TurnR)/length);
+</strong><strong>
+</strong><strong>				interCenterTranslation.rotate(-angle);
+</strong><strong>				interCenterTranslation.scale(Math.cos(angle));
+</strong>			}
+			else {
+				rotation1 = 180;
+				rotation2 = 180;
+			}
 		}
 
 
-		//this.ellipseTo(50,50,ang1+90,turn1,true,0);
+		const TransitionRadiusAngle = interCenterTranslation.angle() * (180 / Math.PI) - 90;
 
-		//this.ellipseTo(TurnR, TurnR, ang1 - 90, TransitionRadiusAngle, !turn1Clockwise, 0);
-		this.ellipseTo(TurnR, TurnR, ang1 - 90, TransitionRadiusAngle, !turn1Clockwise, rotation);
+		
+
+		this.ellipseTo(TurnR, TurnR, ang1 - 90, TransitionRadiusAngle, !turn1Clockwise, rotation1);
 
 
 		//create the straight section between the two turns
@@ -210,8 +159,9 @@ class MovePath extends Phaser.Curves.Path {
 
 		//create the second elipse curve representing turn2
 
-		//this.ellipseTo(TurnR, TurnR, TransitionRadiusAngle, ang2 - 90, !turn2Clockwise, 0);
-		this.ellipseTo(TurnR, TurnR, TransitionRadiusAngle, ang2 - 90, !turn1Clockwise, rotation);
+		
+		this.ellipseTo(TurnR, TurnR, TransitionRadiusAngle, ang2 - 90, !turn2Clockwise, rotation2);
+		
 
 		console.log(this.getEndPoint());
 	}//phaser.math.angle.BetweenPoints(interCenterTranslation,)
@@ -237,7 +187,7 @@ class MovePath extends Phaser.Curves.Path {
         const curveLengths = this.getCurveLengths();
         let i = 0;
 
-        while (i < curveLengths.length)
+        while (i &#x3C; curveLengths.length)
         {
             if (curveLengths[i] >= d)
             {
@@ -253,7 +203,7 @@ class MovePath extends Phaser.Curves.Path {
             i++;
         }
 
-        // loop where sum != 0, sum > d , sum+1 <d
+        // loop where sum != 0, sum > d , sum+1 &#x3C;d
         return null;
 	}
 
@@ -290,7 +240,7 @@ export default class Ship extends Phaser.GameObjects.Sprite {
 			incTime = this.accelTime - delta/1000;
 		}
 
-		if (incTime < this.limit && incTime > 0) {
+		if (incTime &#x3C; this.limit &#x26;&#x26; incTime > 0) {
 			this.accelTime = incTime;
 		}
 	}
@@ -339,31 +289,29 @@ Phaser.GameObjects.GameObjectFactory.register('testship', function (this: Phaser
 		this.scene.events.on('update', testship.update, testship);
 		return testship;
 });
-```
-{% endtab %}
-{% endtabs %}
-
-for now I've hard coded in several movement commands by manually calling the NewPath() method on the testship by accessing the shiplist array on the GameRun instance and supplying fixed arguments.
-
-The ship then follows the move commands in the array in order as with the movement queue in cycle 5.
+</code></pre>
 
 ### Challenges
 
-the testship sprite appears to be misaligned seeing as I expected north to be 0 degrees when I made it so I compensated by rotating it an extra 90 degrees so that it appears to be facing the right direction.
-
-functions only return one result by definition but I needed two different things from the move path to move the ship and they could both be found together simpler than seperately so I decided to use return an array containing both as a work around.
+This was quite simple but in the end I decided to change the maths slightly to simplify it. As you can see in the code I generate the translation between circle centers at line 56 and then modify the inputs to the ellipseTo method by changing variables between lines 63 and 88 in the 3 other possible cases than right direct.
 
 ## Testing
 
-test is simple, let it loose and hopefully the movement follows the move paths as in the objectives.
+I tested using hard coded inputs again, outputing the end of the generated move path and seeing if they lined up and the move path/movement looked natural.
 
 ### Tests
 
-| Test | Instructions     | What I expect                                                                                  | What actually happens                             | Pass/Fail |
-| ---- | ---------------- | ---------------------------------------------------------------------------------------------- | ------------------------------------------------- | --------- |
-| 1    | Run code         | Game doesn't freeze/crash or throw errors before reaching the end of content                   | The game runs without throwing errors or freezing | Pass      |
-| 2    | Press Start Game | Test ship appears and follows the rendered move paths correctly as specified in the objectives | As expected                                       | Pass      |
+| Test | Instructions              | What I expect                                                                 | What actually happens                             | Pass/Fail |
+| ---- | ------------------------- | ----------------------------------------------------------------------------- | ------------------------------------------------- | --------- |
+| 1    | Run code                  | Game doesn't freeze/crash or throw errors before reaching the end of content  | The game runs without throwing errors or freezing | Pass      |
+| 2    | Press Start Game          | Test ship appears and follows the first move path (transverse left turn)      | As expected                                       | Pass      |
+| 3    | wait for second move path | Test ship follows move path 2 (transverse right) after completing move path 1 | As expected                                       | pass      |
+| 4    | wait for third move path  | Test ship follows move path 3 after completing move path 2                    | The Test ship ends up at the wrong coordinates    | fail      |
 
 ### Evidence
 
-{% file src="../.gitbook/assets/2022-12-11 20-31-27.mp4" %}
+{% file src="../.gitbook/assets/2022-12-17 17-29-06.mp4" %}
+
+### Conclusions
+
+The third move path showed that transverse move orders don't work when the move order would have the ship end up very close to its original position. I need to consider this when going forward

@@ -28,6 +28,9 @@
 * [2.3.7 Cycle 7 Navigating using Complex Move Orders](design-and-development/cycle-1-8.md)
 * [2.3.8 Cycle 8 transverse move orders](design-and-development/cycle-1-9.md)
 * [2.3.8.5 State of code after cycle 8](design-and-development/2.3.8.5-state-of-code-after-cycle-8.md)
+* [another cycle whatever, player objects](design-and-development/cycle-1-10.md)
+* [cycle whatever, Selecting ships and player ownership of ships](design-and-development/cycle-1-11.md)
+* [Cycle 9 player controls](design-and-development/cycle-1-12.md)
 
 ## 3 Testing <a href="#testing" id="testing"></a>
 
