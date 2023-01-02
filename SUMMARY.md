@@ -1,6 +1,6 @@
 # Table of contents
 
-* [Some Maybe Not So Generic Top Down Space Strategy Game](README.md)
+* [Top Down Space Strategy Game](README.md)
 
 ## 1 Analysis <a href="#analysis" id="analysis"></a>
 

@@ -2,12 +2,12 @@
 description: Computer Science H446-03
 ---
 
-# Some Maybe Not So Generic Top Down Space Strategy Game
+# Top Down Space Strategy Game
 
 |                  |                |
 | ---------------- | -------------- |
 | Candidate Name   | Louie Elford   |
-| Candidate Number | 9999           |
+| Candidate Number | I don't know   |
 | Centre Name      | Marling School |
 | Centre Number    | 57037          |
 
