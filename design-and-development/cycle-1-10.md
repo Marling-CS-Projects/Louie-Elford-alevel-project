@@ -1,4 +1,4 @@
-# another cycle whatever, player objects
+# 2.3.10 Cycle 10 Player Objects
 
 ## Design
 
@@ -161,4 +161,4 @@ Quite simple really I just need to check that the objects generate correctly and
 
 ### Evidence
 
-<figure><img src="../.gitbook/assets/image (6).png" alt=""><figcaption><p>console log of the player list</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (6) (2).png" alt=""><figcaption><p>console log of the player list</p></figcaption></figure>

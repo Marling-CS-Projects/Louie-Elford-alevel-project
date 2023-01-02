@@ -2,7 +2,7 @@
 description: quick side project to practice C++ and evaluate the viability of the project
 ---
 
-# console based chess game side project
+# 2.2 console based chess game side project
 
 ## Design
 
@@ -749,9 +749,7 @@ another challenge was how I was going to check if the king was in check, I decid
 
 Whilst making the check checking function I had to deal with the issue of trying to check coordinates outside of the array's limits two times, the first time was within the recursive function named "delve" that I used to check if the diagonals, horizontal and vertical were free of threats such as a queen, a rook or a bishop where I had to create an early exit condition to return false (no check) if it was about to check a coordinate that would be out of bounds. The second time was when I was adding the castling rules and realised that an error before hadn't made itself obvious to me. The first check I make within the function is to check each square a knight could threaten the king from for a knight of the opposite colour to the king. This lead to checking out of bounds coordinates, I fixed this by creating a function that I could replace all of the problematic references to the 2d array with which would first check if the coordinates being checked were out of bounds ("Check(int x, int y)".
 
-mistakes with scoping and generation of the 2 dimensional array led me to create a class called Chess Board to store the array and the unicode character strings in. I could I assume to a great deal of tidying up with the current functions.
-
-I accidentally pressed a button on repl that screwed with the formatting of the code. I'm going to use a proper ide asap.
+mistakes with scoping and generation of the 2 dimensional array led me to create a class called Chess Board to store the array and the unicode character strings in. I could I assume do a great deal of tidying up with the current functions.
 
 ## Testing
 
@@ -772,4 +770,4 @@ Due to the sheer number of posible positions in chess I couldn't test each possi
 
 screenshot time:
 
-![](<../.gitbook/assets/image (1) (1).png>)
+<figure><img src="../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>

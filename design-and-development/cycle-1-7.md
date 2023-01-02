@@ -2,7 +2,7 @@
 description: It became quickly evident I needed to do this for debugging
 ---
 
-# 2.3.6.5 Cycle 6.5 Rendering Complex move orders.
+# 2.3.7.5 Cycle 7.5 Rendering Complex move orders.
 
 ## Design
 
@@ -171,4 +171,4 @@ The tests for this are quite simple. I can test for my cycle objectives directly
 
 as seen the move order now renders visibly.
 
-<figure><img src="../.gitbook/assets/image (10).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (10) (2).png" alt=""><figcaption></figcaption></figure>

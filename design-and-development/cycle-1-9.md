@@ -1,4 +1,4 @@
-# 2.3.8 Cycle 8 transverse move orders
+# 2.3.9 Cycle 9 transverse move orders
 
 ## Design
 
@@ -47,7 +47,7 @@ MovePath {
 
 ## Development
 
-<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
 
 this shows the basis for the mathematical and theory side. I'm going to use basic trig to find the angle of the vector and pythagoras to find the magnitude, then I'll construct a vector using that magnitude and angle. I'm going to use Phaser's vector2 methods for this to save me some work.
 
