@@ -7,7 +7,7 @@ description: Computer Science H446-03
 |                  |                |
 | ---------------- | -------------- |
 | Candidate Name   | Louie Elford   |
-| Candidate Number | I don't know   |
+| Candidate Number | 0054           |
 | Centre Name      | Marling School |
 | Centre Number    | 57037          |
 
